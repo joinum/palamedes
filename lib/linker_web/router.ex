@@ -18,6 +18,10 @@ defmodule LinkerWeb.Router do
     pipe_through :browser
 
     live "/", HomeLive.Index, :index
+
+    live "/admin/", LinkLive.Index, :index
+    live "/admin/:id/edit", LinkLive.Index, :edit
+    live "/admin/new", LinkLive.Index, :new
   end
 
   # Other scopes may use custom stacks.

@@ -1,46 +1,34 @@
-<h1>Listing Links</h1>
+<div class="h-screen w-screen bg-gradient-to-l from-primary via-secondary to-primary ">
+  
+  <div class="flex flex-col justify-center items-center z-50">
+    
+    
+    <img class="absolute -top-60 rotate-180 -left-[1000px] z-0 overflow-x-hidden" src={Routes.static_path(@socket, "/images/cords.svg")} alt="JOIN Logo"/>
 
-<%= if @live_action in [:new, :edit] do %>
-  <.modal return_to={Routes.link_index_path(@socket, :index)}>
-    <.live_component
-      module={LinkerWeb.LinkLive.FormComponent}
-      id={@link.id || :new}
-      title={@page_title}
-      action={@live_action}
-      link={@link}
-      return_to={Routes.link_index_path(@socket, :index)}
-    />
-  </.modal>
-<% end %>
+    <img class="mt-20 w-80 h-auto z-50" src={Routes.static_path(@socket, "/images/logo.svg")} alt="JOIN Logo"/>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Url</th>
-      <th>Emoji</th>
-      <th>Attention</th>
-      <th>Index</th>
-      <th>Slug</th>
-      <th>Clicks</th>
+    <p class="text-white font-bold mt-8 text-2xl">
+      Jornadas de Engenharia Informática na Universidade do Minho '22
+    </p>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody id="links">
-    <%= for link <- @links do %>
-      <tr id={"link-#{link.id}"}>
-        <td><%= link.title %></td>
-        <td><%= link.url %></td>
-        <td><%= link.emoji %></td>
-        <td><%= link.attention %></td>
-        <td><%= link.index %></td>
-        <td><%= link.slug %></td>
-        <td><%= link.clicks %></td>
+    <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 z-50">
+      <%= for link <- @links do %>
+        <div class="w-[420px] relative rounded-lg shadow-xl bg-tertiary border-2 border-tertiary hover:border-white px-6 py-5 flex items-center space-x-3">
+          <div class="flex-shrink-0">
+          </div>
+          <div class="flex-1 min-w-0">
+            <a href="#" class="focus:outline-none">
+              <span class="absolute inset-0" aria-hidden="true"></span>
+              <p class="text-xl text-white font-bold"> <%= link.title %> </p>
+            </a>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
-        <td>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+  </div>
+  
+  <img class="absolute -bottom-40 -right-20 z-0 overflow-x-hidden" src={Routes.static_path(@socket, "/images/cords.svg")} alt="JOIN Logo"/>
+
+</div>

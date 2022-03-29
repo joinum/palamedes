@@ -39,7 +39,6 @@
         <td><%= link.clicks %></td>
 
         <td>
-          <span><%= live_redirect "Show", to: Routes.link_show_path(@socket, :show, link) %></span>
           <span><%= live_patch "Edit", to: Routes.link_index_path(@socket, :edit, link) %></span>
           <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: link.id, data: [confirm: "Are you sure?"] %></span>
         </td>
