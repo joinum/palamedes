@@ -1,0 +1,46 @@
+<h1>Listing Links</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.link_index_path(@socket, :index)}>
+    <.live_component
+      module={LinkerWeb.LinkLive.FormComponent}
+      id={@link.id || :new}
+      title={@page_title}
+      action={@live_action}
+      link={@link}
+      return_to={Routes.link_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Url</th>
+      <th>Emoji</th>
+      <th>Attention</th>
+      <th>Index</th>
+      <th>Slug</th>
+      <th>Clicks</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="links">
+    <%= for link <- @links do %>
+      <tr id={"link-#{link.id}"}>
+        <td><%= link.title %></td>
+        <td><%= link.url %></td>
+        <td><%= link.emoji %></td>
+        <td><%= link.attention %></td>
+        <td><%= link.index %></td>
+        <td><%= link.slug %></td>
+        <td><%= link.clicks %></td>
+
+        <td>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

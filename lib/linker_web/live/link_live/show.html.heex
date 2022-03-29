@@ -1,0 +1,56 @@
+<h1>Show Link</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.link_show_path(@socket, :show, @link)}>
+    <.live_component
+      module={LinkerWeb.LinkLive.FormComponent}
+      id={@link.id}
+      title={@page_title}
+      action={@live_action}
+      link={@link}
+      return_to={Routes.link_show_path(@socket, :show, @link)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @link.title %>
+  </li>
+
+  <li>
+    <strong>Url:</strong>
+    <%= @link.url %>
+  </li>
+
+  <li>
+    <strong>Emoji:</strong>
+    <%= @link.emoji %>
+  </li>
+
+  <li>
+    <strong>Attention:</strong>
+    <%= @link.attention %>
+  </li>
+
+  <li>
+    <strong>Index:</strong>
+    <%= @link.index %>
+  </li>
+
+  <li>
+    <strong>Slug:</strong>
+    <%= @link.slug %>
+  </li>
+
+  <li>
+    <strong>Clicks:</strong>
+    <%= @link.clicks %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.link_show_path(@socket, :edit, @link), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.link_index_path(@socket, :index) %></span>
