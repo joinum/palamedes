@@ -17,7 +17,7 @@ defmodule LinkerWeb.Router do
   scope "/", LinkerWeb do
     pipe_through :browser
 
-    live "/", HomeLive.Index, :index
+    get "/", HomeController, :index
 
     live "/admin/", LinkLive.Index, :index
     live "/admin/:id/edit", LinkLive.Index, :edit

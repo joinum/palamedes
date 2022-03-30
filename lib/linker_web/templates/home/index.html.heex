@@ -1,0 +1,37 @@
+<div class="min-h-screen min-w-screen h-full w-full bg-gradient-to-l from-primary via-secondary to-primary">
+  
+  <div class="flex flex-col justify-center items-center z-50">
+    
+    <%# <img class="absolute -top-60 rotate-0 -right-[1400px] z-0" src={Routes.static_path(@conn, "/images/cords.svg")} alt="JOIN Logo"/> %>
+
+    <%# <img class="absolute top-[400px] -left-[1000px] -rotate-90 z-0" src={Routes.static_path(@conn, "/images/cords.svg")} alt="JOIN Logo"/> %>
+
+    <img class="mt-20 w-80 h-auto z-50" src={Routes.static_path(@conn, "/images/logo.svg")} alt="JOIN Logo"/>
+
+    <p class="text-white text-center px-24 lg:px-0 font-bold mt-8 text-2xl">
+      Jornadas de Engenharia Informática na Universidade do Minho '22
+    </p>
+
+    <div class="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-2 z-50">
+      <%= for link <- @links do %>
+        <div class=" w-[300px] sm:w-[420px] relative rounded-lg shadow-xl bg-tertiary border-2 border-tertiary hover:border-white px-6 py-5 flex items-center space-x-3">
+          <div class="flex-shrink-0">
+          </div>
+          <div class="flex-1 min-w-0">
+            <a href="#" class="focus:outline-none">
+              <span class="absolute inset-0" aria-hidden="true"></span>
+              <p class="text-xl text-white font-bold"> 
+                <%= link.title %>
+              </p>
+            </a>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+
+  </div>
+  
+  <%# <img class="absolute -bottom-40 -right-[400px] z-0 overflow-x-hidden" src={Routes.static_path(@conn, "/images/cords.svg")} alt="JOIN Logo"/> %>
+
+</div>
