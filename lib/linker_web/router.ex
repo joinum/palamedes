@@ -22,6 +22,9 @@ defmodule LinkerWeb.Router do
     live "/admin/", LinkLive.Index, :index
     live "/admin/:id/edit", LinkLive.Index, :edit
     live "/admin/new", LinkLive.Index, :new
+    live "/form/", FormLive.Index, :index
+    live "/form/:id/edit", FormLive.Index, :edit
+    live "/form/new", FormLive.Index, :new
   end
 
   # Other scopes may use custom stacks.
