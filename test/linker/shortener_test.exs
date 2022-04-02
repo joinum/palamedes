@@ -68,4 +68,64 @@ defmodule Linker.ShortenerTest do
       assert %Ecto.Changeset{} = Shortener.change_link(link)
     end
   end
+
+  describe "forms" do
+    alias Linker.Shortener.Form
+
+    import Linker.ShortenerFixtures
+
+    @invalid_attrs %{name: nil, slug: nil, url: nil, visits: nil}
+
+    test "list_forms/0 returns all forms" do
+      form = form_fixture()
+      assert Shortener.list_forms() == [form]
+    end
+
+    test "get_form!/1 returns the form with given id" do
+      form = form_fixture()
+      assert Shortener.get_form!(form.id) == form
+    end
+
+    test "create_form/1 with valid data creates a form" do
+      valid_attrs = %{name: "some name", slug: "some slug", url: "some url", visits: 42}
+
+      assert {:ok, %Form{} = form} = Shortener.create_form(valid_attrs)
+      assert form.name == "some name"
+      assert form.slug == "some slug"
+      assert form.url == "some url"
+      assert form.visits == 42
+    end
+
+    test "create_form/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Shortener.create_form(@invalid_attrs)
+    end
+
+    test "update_form/2 with valid data updates the form" do
+      form = form_fixture()
+      update_attrs = %{name: "some updated name", slug: "some updated slug", url: "some updated url", visits: 43}
+
+      assert {:ok, %Form{} = form} = Shortener.update_form(form, update_attrs)
+      assert form.name == "some updated name"
+      assert form.slug == "some updated slug"
+      assert form.url == "some updated url"
+      assert form.visits == 43
+    end
+
+    test "update_form/2 with invalid data returns error changeset" do
+      form = form_fixture()
+      assert {:error, %Ecto.Changeset{}} = Shortener.update_form(form, @invalid_attrs)
+      assert form == Shortener.get_form!(form.id)
+    end
+
+    test "delete_form/1 deletes the form" do
+      form = form_fixture()
+      assert {:ok, %Form{}} = Shortener.delete_form(form)
+      assert_raise Ecto.NoResultsError, fn -> Shortener.get_form!(form.id) end
+    end
+
+    test "change_form/1 returns a form changeset" do
+      form = form_fixture()
+      assert %Ecto.Changeset{} = Shortener.change_form(form)
+    end
+  end
 end

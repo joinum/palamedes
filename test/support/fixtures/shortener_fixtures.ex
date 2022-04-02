@@ -23,4 +23,21 @@ defmodule Linker.ShortenerFixtures do
 
     link
   end
+
+  @doc """
+  Generate a form.
+  """
+  def form_fixture(attrs \\ %{}) do
+    {:ok, form} =
+      attrs
+      |> Enum.into(%{
+        name: "some name",
+        slug: "some slug",
+        url: "some url",
+        visits: 42
+      })
+      |> Linker.Shortener.create_form()
+
+    form
+  end
 end
