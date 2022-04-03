@@ -18,12 +18,12 @@
           <div class="flex-shrink-0">
           </div>
           <div class="flex-1 min-w-0">
-            <a href="#" class="focus:outline-none">
+            <%= live_patch to: link.url do %>
               <span class="absolute inset-0" aria-hidden="true"></span>
               <p class="text-xl text-white font-bold"> 
-                <%= link.emoji %> <%= link.title %>
+                  <%= link.emoji %> <%= link.title %>
               </p>
-            </a>
+            <% end %>
           </div>
         </div>
       <% end %>
