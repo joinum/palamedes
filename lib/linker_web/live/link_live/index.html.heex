@@ -48,7 +48,9 @@
                   </td>
                   <td class="whitespace-nowrap text-center py-4 text-sm">
                     <%= if link.attention do %>
-                      <span id="person-4" name="person-4" type="checkbox" class="h-4 w-4 text-red-600 border-gray-300 rounded" />
+                      <input type="checkbox" disabled="disabled" checked="checked" class="h-4 w-4 text-red-600 border-gray-300 rounded" />
+                    <% else %>
+                      <input type="checkbox" disabled="disabled" class="h-4 w-4 text-red-600 border-gray-300 rounded" />
                     <% end %>
                   </td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-blue-500">
