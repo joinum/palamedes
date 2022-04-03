@@ -33,7 +33,7 @@
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-200 bg-white">
-              <%= for link <- @links do %>
+              <%= for link <- Enum.sort(@links, &(&1.index < &2.index)) do %>
                 <tr class="divide-x divide-gray-200" id={"link-#{link.id}"}>
                   <td class="whitespace-nowrap py-4 text-center text-sm font-medium text-gray-900">
                     <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto text-gray-500 h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
@@ -43,7 +43,7 @@
                   <td class="whitespace-nowrap text-center py-4 text-sm font-medium text-gray-900">
                     <%= link.emoji %>
                   </td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900">
                     <%= link.title %>
                   </td>
                   <td class="whitespace-nowrap text-center py-4 text-sm">
@@ -51,11 +51,15 @@
                       <span id="person-4" name="person-4" type="checkbox" class="h-4 w-4 text-red-600 border-gray-300 rounded" />
                     <% end %>
                   </td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                    <%= link.url %>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-blue-500">
+                    <%= live_patch to: link.url do %>
+                      <%= link.url %>
+                    <% end %>
                   </td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                    <%= link.slug %>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-blue-500">
+                    <%= live_patch to: link.url do %>
+                      https://link.join.di.uminho.pt/<%= link.slug %>
+                    <% end %>
                   </td>
                   <td class="whitespace-nowrap py-4 text-center text-sm text-gray-500">
                     <%= link.clicks %>
