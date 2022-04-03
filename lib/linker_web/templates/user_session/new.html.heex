@@ -1,0 +1,58 @@
+<%#= if @error_message do %>
+  <%# <div class="alert alert-danger">
+    <p><%#= @error_message %>
+  <%# </div> %>
+<%# end %>
+
+<.form let={f} 
+       for={@conn}
+       action={Routes.user_session_path(@conn, :create)} 
+       as={:user}
+>
+  
+  <div class="min-h-screen min-w-full flex bg-gradient-to-b from-primary via-secondary to-primary">
+    <div class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+      <div class="mx-auto w-full max-w-sm lg:w-96">
+        <div>
+          <img class="mx-auto mt-20 w-80 h-auto z-50" src={Routes.static_path(@conn, "/images/logo.svg")} alt="JOIN Logo"/>
+        </div>
+
+        <div class="mt-8">
+          <div class="mt-6">
+            <form action="#" method="POST" class="space-y-6">
+              <div>
+                <label for="email" class="block text-sm font-medium text-white"> Email address </label>
+                <div class="mt-1">
+                  <%= email_input f, :email, required: true, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 sm:text-sm focus:outline-none focus:ring-white focus:border-white" %>
+                </div>
+              </div>
+
+              <div class="mt-2">
+                <label for="password" class="block text-sm font-medium text-white"> Password </label>
+                <div class="mt-1">
+                  <%= password_input f, :password, required: true, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 sm:text-sm focus:outline-none focus:ring-white focus:border-white" %>
+                </div>
+              </div>
+
+              <div class="mt-2 flex items-center justify-between">
+                <div class="flex items-center">
+                  <%= checkbox f, :remember_me, class: "h-4 w-4 text-tertiary border-gray-300 rounded focus:outline-none focus:ring-white focus:border-white" %>
+                  <label for="remember-me" class="ml-2 block text-sm text-white"> Remember me </label>
+                </div>
+                <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "text-white" %>
+              </div>
+
+              <div class="mt-2">
+                <%= submit "Sign in", class: "w-full flex justify-center py-2 px-4 rounded-md shadow-sm text-sm font-medium text-white bg-tertiary border-2 border-tertiary hover:border-white focus:outline-none focus:ring-white focus:border-white" %>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hidden lg:block relative w-0 flex-1">
+      <img class="absolute inset-0 h-full w-full object-cover" src={Routes.static_path(@conn, "/images/di.jpg")} alt="di"/>
+    </div>
+  </div>
+
+</.form>
