@@ -25,18 +25,10 @@
     <%= checkbox f, :attention %>
     <%= error_tag f, :attention %>
   
-    <%= label f, :index %>
-    <%= number_input f, :index %>
-    <%= error_tag f, :index %>
-  
     <%= label f, :slug %>
     <%= text_input f, :slug %>
     <%= error_tag f, :slug %>
-  
-    <%= label f, :clicks %>
-    <%= number_input f, :clicks %>
-    <%= error_tag f, :clicks %>
-  
+
     <div>
       <%= submit "Save", phx_disable_with: "Saving..." %>
     </div>
