@@ -8,6 +8,8 @@ defmodule Linker.Accounts.User do
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
 
+    field :admin, :boolean
+
     timestamps()
   end
 
@@ -30,7 +32,7 @@ defmodule Linker.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [:email, :password, :admin])
     |> validate_email()
     |> validate_password(opts)
   end

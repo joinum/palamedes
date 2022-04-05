@@ -9,6 +9,9 @@
                 <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">
                   Email
                 </th>
+                <th scope="col" class="py-3.5 pl-4 text-center text-sm font-semibold text-gray-900 sm:pr-6">
+                  Admin
+                </th>
                 <th scope="col" class="py-3.5 pl-4 text-left text-sm font-semibold text-gray-900 sm:pr-6">
                   Action
                 </th>
@@ -19,6 +22,13 @@
                 <tr class="divide-x divide-gray-200" id={"user-#{user.id}"}>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900">
                     <%= user.email %>
+                  </td>
+                  <td class="whitespace-nowrap text-center py-4 text-sm">
+                    <%= if user.admin do %>
+                      <input type="checkbox" disabled="disabled" checked="checked" class="h-4 w-4 text-red-600 border-gray-300 rounded" />
+                    <% else %>
+                      <input type="checkbox" disabled="disabled" class="h-4 w-4 text-red-600 border-gray-300 rounded" />
+                    <% end %>
                   </td>
                   <td class="relative whitespace-nowrap py-4 pl-4 text-sm font-medium">
                     <%= link "Delete", to: "#", phx_click: "delete", phx_value_id: user.id, data: [confirm: "Are you sure?"], class: "text-red-600 hover:text-red-900" %>
