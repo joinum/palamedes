@@ -7,6 +7,7 @@ defmodule Linker.Repo.Migrations.CreateUsersAuthTables do
     create table(:users) do
       add :email, :citext, null: false
       add :hashed_password, :string, null: false
+      add :admin, :boolean, null: false
       add :confirmed_at, :naive_datetime
       timestamps()
     end
