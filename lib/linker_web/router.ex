@@ -75,15 +75,17 @@ defmodule LinkerWeb.Router do
   scope "/", LinkerWeb do
     pipe_through [:browser, :require_authenticated_user]
 
-    live "/admin/", LinkLive.Index, :index
-    live "/admin/:id/edit", LinkLive.Index, :edit
-    live "/admin/new", LinkLive.Index, :new
-    live "/form/", FormLive.Index, :index
-    live "/form/:id/edit", FormLive.Index, :edit
-    live "/form/new", FormLive.Index, :new
-    live "/accounts/", UserLive.Index, :index
-    live "/accounts/:id/edit", UserLive.Index, :edit
-    live "/accounts/new", UserLive.Index, :new
+    live_session :logged_in, on_mount: [{LinkerWeb.Hooks, :current_user}] do
+      live "/admin/", LinkLive.Index, :index
+      live "/admin/:id/edit", LinkLive.Index, :edit
+      live "/admin/new", LinkLive.Index, :new
+      live "/form/", FormLive.Index, :index
+      live "/form/:id/edit", FormLive.Index, :edit
+      live "/form/new", FormLive.Index, :new
+      live "/accounts/", UserLive.Index, :index
+      live "/accounts/:id/edit", UserLive.Index, :edit
+      live "/accounts/new", UserLive.Index, :new
+    end
 
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
