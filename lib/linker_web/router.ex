@@ -83,6 +83,9 @@ defmodule LinkerWeb.Router do
       live "/form/", FormLive.Index, :index
       live "/form/:id/edit", FormLive.Index, :edit
       live "/form/new", FormLive.Index, :new
+      live "/redirect/", RedirectLive.Index, :index
+      live "/redirect/:id/edit", RedirectLive.Index, :edit
+      live "/redirect/new", RedirectLive.Index, :new
       live "/accounts/", UserLive.Index, :index
       live "/accounts/:id/edit", UserLive.Index, :edit
       live "/accounts/new", UserLive.Index, :new
