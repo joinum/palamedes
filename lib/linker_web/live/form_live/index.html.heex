@@ -1,4 +1,70 @@
-<h1>Listing Forms</h1>
+<div class="">
+  <div class="flex flex-col">
+    <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5">
+          <table class="min-w-full divide-y divide-gray-300">
+            <thead class="bg-gray-50">
+              <tr class="divide-x divide-gray-200">
+                <th scope="col" class="py-3.5 text-center text-sm font-semibold text-gray-900">
+                  #
+                </th>
+                <th scope="col" class="py-3.5 pl-4 pr-4 text-left text-sm font-semibold text-gray-900">
+                  Name
+                </th>
+                <th scope="col" class="py-3.5 pl-4 pr-4 text-left text-sm font-semibold text-gray-900 sm:pr-6">
+                  URL
+                </th>
+                <th scope="col" class="py-3.5 pl-4 pr-4 text-left text-sm font-semibold text-gray-900 sm:pr-6">
+                  Link
+                </th>
+                <th scope="col" class="py-3.5 text-center text-sm font-semibold text-gray-900">
+                  Visits
+                </th>
+                <th scope="col" class="py-3.5 pl-4 text-left text-sm font-semibold text-gray-900 sm:pr-6">
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <%= for form <- Enum.sort(@forms, &(&1.index < &2.index)) do %>
+                <tr class="divide-x divide-gray-200" id={"form-#{form.id}"}>
+                  <td class="whitespace-nowrap py-4 text-center text-sm font-medium text-gray-900">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto text-gray-500 h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+                    </svg>
+                  </td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900">
+                    <%= form.name %>
+                  </td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-blue-500">
+                    <%= live_patch to: form.url do %>
+                      <%= form.url %>
+                    <% end %>
+                  </td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-blue-500">
+                    <%= live_patch to: form.url do %>
+                      https://link.join.di.uminho.pt/<%= form.slug %>
+                    <% end %>
+                  </td>
+                  <td class="whitespace-nowrap py-4 text-center text-sm text-gray-500">
+                    <%= form.visits %>
+                  </td>
+                  <td class="relative whitespace-nowrap py-4 pl-4 text-sm font-medium">
+                    <%= link "Delete", to: "#", phx_click: "delete", phx_value_id: form.id, data: [confirm: "Are you sure?"], class: "text-red-600 hover:text-red-900" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="bg-gray-100 border-w border-y border-gray-300 shadow">
+  <%= live_patch "New", to: Routes.form_index_path(@socket, :new), class: "text-sm mx-4 my-4 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium shadow-sm text-white bg-red-600 hover:bg-red-700" %>
+</div>
 
 <%= if @live_action in [:new, :edit] do %>
   <.modal return_to={Routes.form_index_path(@socket, :index)}>
@@ -12,33 +78,3 @@
     />
   </.modal>
 <% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Slug</th>
-      <th>Url</th>
-      <th>Visits</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody id="forms">
-    <%= for form <- @forms do %>
-      <tr id={"form-#{form.id}"}>
-        <td><%= form.name %></td>
-        <td><%= form.slug %></td>
-        <td><%= form.url %></td>
-        <td><%= form.visits %></td>
-
-        <td>
-          <span><%= live_patch "Edit", to: Routes.form_index_path(@socket, :edit, form) %></span>
-          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: form.id, data: [confirm: "Are you sure?"] %></span>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<span><%= live_patch "New Form", to: Routes.form_index_path(@socket, :new) %></span>
