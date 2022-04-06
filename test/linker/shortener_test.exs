@@ -128,4 +128,66 @@ defmodule Linker.ShortenerTest do
       assert %Ecto.Changeset{} = Shortener.change_form(form)
     end
   end
+
+  describe "redirects" do
+    alias Linker.Shortener.Redirect
+
+    import Linker.ShortenerFixtures
+
+    @invalid_attrs %{link: nil, name: nil, slug: nil, url: nil, visits: nil}
+
+    test "list_redirects/0 returns all redirects" do
+      redirect = redirect_fixture()
+      assert Shortener.list_redirects() == [redirect]
+    end
+
+    test "get_redirect!/1 returns the redirect with given id" do
+      redirect = redirect_fixture()
+      assert Shortener.get_redirect!(redirect.id) == redirect
+    end
+
+    test "create_redirect/1 with valid data creates a redirect" do
+      valid_attrs = %{link: "some link", name: "some name", slug: "some slug", url: "some url", visits: 42}
+
+      assert {:ok, %Redirect{} = redirect} = Shortener.create_redirect(valid_attrs)
+      assert redirect.link == "some link"
+      assert redirect.name == "some name"
+      assert redirect.slug == "some slug"
+      assert redirect.url == "some url"
+      assert redirect.visits == 42
+    end
+
+    test "create_redirect/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Shortener.create_redirect(@invalid_attrs)
+    end
+
+    test "update_redirect/2 with valid data updates the redirect" do
+      redirect = redirect_fixture()
+      update_attrs = %{link: "some updated link", name: "some updated name", slug: "some updated slug", url: "some updated url", visits: 43}
+
+      assert {:ok, %Redirect{} = redirect} = Shortener.update_redirect(redirect, update_attrs)
+      assert redirect.link == "some updated link"
+      assert redirect.name == "some updated name"
+      assert redirect.slug == "some updated slug"
+      assert redirect.url == "some updated url"
+      assert redirect.visits == 43
+    end
+
+    test "update_redirect/2 with invalid data returns error changeset" do
+      redirect = redirect_fixture()
+      assert {:error, %Ecto.Changeset{}} = Shortener.update_redirect(redirect, @invalid_attrs)
+      assert redirect == Shortener.get_redirect!(redirect.id)
+    end
+
+    test "delete_redirect/1 deletes the redirect" do
+      redirect = redirect_fixture()
+      assert {:ok, %Redirect{}} = Shortener.delete_redirect(redirect)
+      assert_raise Ecto.NoResultsError, fn -> Shortener.get_redirect!(redirect.id) end
+    end
+
+    test "change_redirect/1 returns a redirect changeset" do
+      redirect = redirect_fixture()
+      assert %Ecto.Changeset{} = Shortener.change_redirect(redirect)
+    end
+  end
 end

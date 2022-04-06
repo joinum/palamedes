@@ -40,4 +40,22 @@ defmodule Linker.ShortenerFixtures do
 
     form
   end
+
+  @doc """
+  Generate a redirect.
+  """
+  def redirect_fixture(attrs \\ %{}) do
+    {:ok, redirect} =
+      attrs
+      |> Enum.into(%{
+        link: "some link",
+        name: "some name",
+        slug: "some slug",
+        url: "some url",
+        visits: 42
+      })
+      |> Linker.Shortener.create_redirect()
+
+    redirect
+  end
 end
