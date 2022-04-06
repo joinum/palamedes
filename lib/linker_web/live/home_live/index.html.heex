@@ -6,7 +6,7 @@
 
     <%# <img class="absolute top-[400px] -left-[1000px] -rotate-90 z-0" src={Routes.static_path(@conn, "/images/cords.svg")} alt="JOIN Logo"/> %>
 
-    <img class="mt-20 w-80 h-auto z-50" src={Routes.static_path(@conn, "/images/logo.svg")} alt="JOIN Logo"/>
+    <img class="mt-20 w-80 h-auto z-50" src={Routes.static_path(@socket, "/images/logo.svg")} alt="JOIN Logo"/>
 
     <p class="text-white text-center px-24 lg:px-0 font-bold mt-8 text-2xl">
       Jornadas de Engenharia Informática na Universidade do Minho '22
@@ -18,7 +18,7 @@
           <div class="flex-shrink-0">
           </div>
           <div class="flex-1 min-w-0">
-            <%= live_patch to: link.url do %>
+            <%= link to: link.url, phx_click: "increment-clicks", phx_value_id: link.id do %>
               <span class="absolute inset-0" aria-hidden="true"></span>
               <p class="text-xl text-white font-bold"> 
                   <%= link.emoji %> <%= link.title %>

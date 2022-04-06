@@ -20,7 +20,7 @@ defmodule LinkerWeb.Router do
   scope "/", LinkerWeb do
     pipe_through :browser
 
-    get "/", HomeController, :index
+    live "/", HomeLive.Index, :index
   end
 
   # Other scopes may use custom stacks.
@@ -70,6 +70,7 @@ defmodule LinkerWeb.Router do
     post "/users/reset_password", UserResetPasswordController, :create
     get "/users/reset_password/:token", UserResetPasswordController, :edit
     put "/users/reset_password/:token", UserResetPasswordController, :update
+
   end
 
   scope "/", LinkerWeb do
