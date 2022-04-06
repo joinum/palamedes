@@ -6,10 +6,10 @@
           <table class="min-w-full divide-y divide-gray-300">
             <thead class="bg-gray-50">
               <tr class="divide-x divide-gray-200">
-                <th scope="col" class="py-3.5 pl-4 pr-4 text-left text-sm font-semibold text-gray-900">
+                <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">
                   Name
                 </th>
-                <th scope="col" class="py-3.5 pl-4 pr-4 text-left text-sm font-semibold text-gray-900 sm:pr-6">
+                <th scope="col" class="py-3.5 pl-4 pr-4 text-left text-sm font-semibold text-gray-900">
                   Slug
                 </th>
                 <th scope="col" class="py-3.5 pl-4 pr-4 text-left text-sm font-semibold text-gray-900 sm:pr-6">
@@ -21,7 +21,7 @@
                 <th scope="col" class="py-3.5 text-center text-sm font-semibold text-gray-900">
                   Visits
                 </th>
-                <th scope="col" class="py-3.5 text-center text-sm font-semibold text-gray-900">
+                <th scope="col" class="py-3.5 pl-4 pr-4 text-left text-sm font-semibold text-gray-900 sm:pr-6">
                   Last edited
                 </th>
                 <th scope="col" class="py-3.5 pl-4 text-left text-sm font-semibold text-gray-900 sm:pr-6">
@@ -30,32 +30,32 @@
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-200 bg-white">
-              <%= for form <- Enum.sort(@forms, &(&1.index < &2.index)) do %>
-                <tr class="divide-x divide-gray-200" id={"form-#{form.id}"}>
+              <%= for redirect <- Enum.sort(@redirects, &(&1.index < &2.index)) do %>
+                <tr class="divide-x divide-gray-200" id={"redirect-#{redirect.id}"}>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900">
-                    <%= form.name %>
+                    <%= redirect.name %>
                   </td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900">
-                    <%= form.slug %>
+                  <td class="whitespace-nowrap text-left px-3 py-4 text-sm font-medium text-gray-900">
+                    <%= redirect.slug %>
                   </td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-blue-500">
-                    <%= live_patch to: form.url do %>
-                      <%= form.url %>
+                    <%= live_patch to: redirect.url do %>
+                      <%= redirect.url %>
                     <% end %>
                   </td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-blue-500">
-                    <%= live_patch to: form.url do %>
-                      https://link.join.di.uminho.pt/<%= form.slug %>
+                    <%= live_patch to: redirect.url do %>
+                      https://link.join.di.uminho.pt/<%= redirect.slug %>
                     <% end %>
                   </td>
                   <td class="whitespace-nowrap py-4 text-center text-sm text-gray-900">
-                    <%= form.visits %>
+                    <%= redirect.visits %>
                   </td>
-                  <td class="whitespace-nowrap px-3 py-4 text-left text-sm text-gray-900">
-                    <%= form.updated_at %>
+                  <td class="whitespace-nowrap text-left px-3 py-4 text-sm font-medium text-gray-900">
+                    <%= redirect.updated_at %>
                   </td>
                   <td class="relative whitespace-nowrap py-4 pl-4 text-sm font-medium">
-                    <%= link "Delete", to: "#", phx_click: "delete", phx_value_id: form.id, data: [confirm: "Are you sure?"], class: "text-red-600 hover:text-red-900" %>
+                    <%= link "Delete", to: "#", phx_click: "delete", phx_value_id: redirect.id, data: [confirm: "Are you sure?"], class: "text-red-600 hover:text-red-900" %>
                   </td>
                 </tr>
               <% end %>
@@ -67,18 +67,18 @@
   </div>
 </div>
 <div class="bg-gray-100 border-w border-y border-gray-300 shadow">
-  <%= live_patch "New", to: Routes.form_index_path(@socket, :new), class: "text-sm mx-4 my-4 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium shadow-sm text-white bg-red-600 hover:bg-red-700" %>
+  <%= live_patch "New", to: Routes.redirect_index_path(@socket, :new), class: "text-sm mx-4 my-4 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium shadow-sm text-white bg-red-600 hover:bg-red-700" %>
 </div>
 
 <%= if @live_action in [:new, :edit] do %>
-  <.modal return_to={Routes.form_index_path(@socket, :index)}>
+  <.modal return_to={Routes.redirect_index_path(@socket, :index)}>
     <.live_component
-      module={LinkerWeb.FormLive.FormComponent}
-      id={@form.id || :new}
+      module={LinkerWeb.RedirectLive.FormComponent}
+      id={@redirect.id || :new}
       title={@page_title}
       action={@live_action}
-      form={@form}
-      return_to={Routes.form_index_path(@socket, :index)}
+      redirect={@redirect}
+      return_to={Routes.redirect_index_path(@socket, :index)}
     />
   </.modal>
 <% end %>
