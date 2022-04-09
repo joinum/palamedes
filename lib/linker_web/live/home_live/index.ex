@@ -3,7 +3,6 @@ defmodule LinkerWeb.HomeLive.Index do
 
   alias Linker.Shortener
   alias Linker.Shortener.Link
-
   alias Linker.Accounts.User
 
   @impl true
