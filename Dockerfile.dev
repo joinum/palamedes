@@ -22,8 +22,9 @@ RUN apk add --no-cache inotify-tools
 
 # Install hex + rebar
 RUN mix local.hex --force && \
-    mix local.rebar --force
+    mix local.rebar --force && \
+    mix deps.get
 
 WORKDIR /app
 
-CMD [ "sh", "-c", "mix setup; mix phx.server" ]
+CMD [ "sh", "-c", "mix ecto.setup; mix phx.server" ]
