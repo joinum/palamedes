@@ -25,7 +25,6 @@ required if you want to follow a Docker base approach.
 - [Docker 20+](https://docs.docker.com/desktop/)
 - [Docker Compose 2+](https://docs.docker.com/compose/)
 
-
 If you prefer a local setup (to have more control) the following software is
 required to be installed on your system.
 
