@@ -8,7 +8,15 @@ defmodule Linker.ShortenerTest do
 
     import Linker.ShortenerFixtures
 
-    @invalid_attrs %{attention: nil, clicks: nil, emoji: nil, index: nil, slug: nil, title: nil, url: nil}
+    @invalid_attrs %{
+      attention: nil,
+      clicks: nil,
+      emoji: nil,
+      index: nil,
+      slug: nil,
+      title: nil,
+      url: nil
+    }
 
     test "list_links/0 returns all links" do
       link = link_fixture()
@@ -21,7 +29,15 @@ defmodule Linker.ShortenerTest do
     end
 
     test "create_link/1 with valid data creates a link" do
-      valid_attrs = %{attention: true, clicks: 42, emoji: "some emoji", index: 42, slug: "some slug", title: "some title", url: "some url"}
+      valid_attrs = %{
+        attention: true,
+        clicks: 42,
+        emoji: "some emoji",
+        index: 42,
+        slug: "some slug",
+        title: "some title",
+        url: "some url"
+      }
 
       assert {:ok, %Link{} = link} = Shortener.create_link(valid_attrs)
       assert link.attention == true
@@ -39,7 +55,16 @@ defmodule Linker.ShortenerTest do
 
     test "update_link/2 with valid data updates the link" do
       link = link_fixture()
-      update_attrs = %{attention: false, clicks: 43, emoji: "some updated emoji", index: 43, slug: "some updated slug", title: "some updated title", url: "some updated url"}
+
+      update_attrs = %{
+        attention: false,
+        clicks: 43,
+        emoji: "some updated emoji",
+        index: 43,
+        slug: "some updated slug",
+        title: "some updated title",
+        url: "some updated url"
+      }
 
       assert {:ok, %Link{} = link} = Shortener.update_link(link, update_attrs)
       assert link.attention == false
@@ -102,7 +127,13 @@ defmodule Linker.ShortenerTest do
 
     test "update_form/2 with valid data updates the form" do
       form = form_fixture()
-      update_attrs = %{name: "some updated name", slug: "some updated slug", url: "some updated url", visits: 43}
+
+      update_attrs = %{
+        name: "some updated name",
+        slug: "some updated slug",
+        url: "some updated url",
+        visits: 43
+      }
 
       assert {:ok, %Form{} = form} = Shortener.update_form(form, update_attrs)
       assert form.name == "some updated name"
@@ -147,7 +178,13 @@ defmodule Linker.ShortenerTest do
     end
 
     test "create_redirect/1 with valid data creates a redirect" do
-      valid_attrs = %{link: "some link", name: "some name", slug: "some slug", url: "some url", visits: 42}
+      valid_attrs = %{
+        link: "some link",
+        name: "some name",
+        slug: "some slug",
+        url: "some url",
+        visits: 42
+      }
 
       assert {:ok, %Redirect{} = redirect} = Shortener.create_redirect(valid_attrs)
       assert redirect.link == "some link"
@@ -163,7 +200,14 @@ defmodule Linker.ShortenerTest do
 
     test "update_redirect/2 with valid data updates the redirect" do
       redirect = redirect_fixture()
-      update_attrs = %{link: "some updated link", name: "some updated name", slug: "some updated slug", url: "some updated url", visits: 43}
+
+      update_attrs = %{
+        link: "some updated link",
+        name: "some updated name",
+        slug: "some updated slug",
+        url: "some updated url",
+        visits: 43
+      }
 
       assert {:ok, %Redirect{} = redirect} = Shortener.update_redirect(redirect, update_attrs)
       assert redirect.link == "some updated link"

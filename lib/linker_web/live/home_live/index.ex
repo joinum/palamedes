@@ -13,10 +13,10 @@ defmodule LinkerWeb.HomeLive.Index do
   @impl true
   def handle_params(params, _url, socket) do
     {:noreply,
-      socket
-      |> assign(:current_page, :home)
-      |> assign(:current_user, %User{})
-      |> assign(:links, list_links())}
+     socket
+     |> assign(:current_page, :home)
+     |> assign(:current_user, %User{})
+     |> assign(:links, list_links())}
   end
 
   @impl true
