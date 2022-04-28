@@ -21,12 +21,16 @@ defmodule LinkerWeb.Router do
     pipe_through :browser
 
     live "/", HomeLive.Index, :index
+
+    get "/_version", InfoController, :version
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", LinkerWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", LinkerWeb do
+    pipe_through :api
+
+    get "/", InfoController, :about
+  end
 
   # Enables LiveDashboard only for development
   #
