@@ -8,13 +8,12 @@ defmodule Linker.Repo.Seeds do
   def run do
     [
       "links.exs",
-      "accounts.exs",
+      "accounts.exs"
     ]
     |> Enum.each(fn file ->
       Code.require_file("#{@seeds_dir}/#{file}")
     end)
   end
-
 end
 
 Linker.Repo.Seeds.run()

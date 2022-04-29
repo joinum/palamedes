@@ -24,9 +24,10 @@ defmodule LinkerWeb.FormLive.FormComponent do
   end
 
   def handle_event("save", %{"form" => form_params}, socket) do
-      form_params =
-        form_params
-        |> Map.put("visits", 0)
+    form_params =
+      form_params
+      |> Map.put("visits", 0)
+
     save_form(socket, socket.assigns.action, form_params)
   end
 

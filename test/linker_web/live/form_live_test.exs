@@ -5,7 +5,12 @@ defmodule LinkerWeb.FormLiveTest do
   import Linker.ShortenerFixtures
 
   @create_attrs %{name: "some name", slug: "some slug", url: "some url", visits: 42}
-  @update_attrs %{name: "some updated name", slug: "some updated slug", url: "some updated url", visits: 43}
+  @update_attrs %{
+    name: "some updated name",
+    slug: "some updated slug",
+    url: "some updated url",
+    visits: 43
+  }
   @invalid_attrs %{name: nil, slug: nil, url: nil, visits: nil}
 
   defp create_form(_) do
