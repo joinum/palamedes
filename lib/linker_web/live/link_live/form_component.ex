@@ -28,6 +28,7 @@ defmodule LinkerWeb.LinkLive.FormComponent do
       link_params
       |> Map.put("clicks", 0)
       |> Map.put("index", Enum.count(Shortener.list_links()) + 1)
+
     save_link(socket, socket.assigns.action, link_params)
   end
 

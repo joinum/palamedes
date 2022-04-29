@@ -4,9 +4,33 @@ defmodule LinkerWeb.LinkLiveTest do
   import Phoenix.LiveViewTest
   import Linker.ShortenerFixtures
 
-  @create_attrs %{attention: true, clicks: 42, emoji: "some emoji", index: 42, slug: "some slug", title: "some title", url: "some url"}
-  @update_attrs %{attention: false, clicks: 43, emoji: "some updated emoji", index: 43, slug: "some updated slug", title: "some updated title", url: "some updated url"}
-  @invalid_attrs %{attention: false, clicks: nil, emoji: nil, index: nil, slug: nil, title: nil, url: nil}
+  @create_attrs %{
+    attention: true,
+    clicks: 42,
+    emoji: "some emoji",
+    index: 42,
+    slug: "some slug",
+    title: "some title",
+    url: "some url"
+  }
+  @update_attrs %{
+    attention: false,
+    clicks: 43,
+    emoji: "some updated emoji",
+    index: 43,
+    slug: "some updated slug",
+    title: "some updated title",
+    url: "some updated url"
+  }
+  @invalid_attrs %{
+    attention: false,
+    clicks: nil,
+    emoji: nil,
+    index: nil,
+    slug: nil,
+    title: nil,
+    url: nil
+  }
 
   defp create_link(_) do
     link = link_fixture()

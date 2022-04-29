@@ -4,8 +4,20 @@ defmodule LinkerWeb.RedirectLiveTest do
   import Phoenix.LiveViewTest
   import Linker.ShortenerFixtures
 
-  @create_attrs %{link: "some link", name: "some name", slug: "some slug", url: "some url", visits: 42}
-  @update_attrs %{link: "some updated link", name: "some updated name", slug: "some updated slug", url: "some updated url", visits: 43}
+  @create_attrs %{
+    link: "some link",
+    name: "some name",
+    slug: "some slug",
+    url: "some url",
+    visits: 42
+  }
+  @update_attrs %{
+    link: "some updated link",
+    name: "some updated name",
+    slug: "some updated slug",
+    url: "some updated url",
+    visits: 43
+  }
   @invalid_attrs %{link: nil, name: nil, slug: nil, url: nil, visits: nil}
 
   defp create_redirect(_) do
