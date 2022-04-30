@@ -12,7 +12,7 @@ defmodule Linker.MixProject do
       name: @name,
       version: @version,
       description: @description,
-      git_ref: git_revision_hash(),
+      git_ref: git_revision_hash(Mix.env()),
       version: "0.1.0",
       elixir: "~> 1.13",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -42,7 +42,7 @@ defmodule Linker.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:bcrypt_elixir, "~> 2.0"},
+      {:bcrypt_elixir, "~> 3.0"},
       {:phoenix, "~> 1.6.6"},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.6"},
@@ -80,7 +80,9 @@ defmodule Linker.MixProject do
     ]
   end
 
-  defp git_revision_hash do
+  defp git_revision_hash(:prod), do: System.get_env("SOURCE_VERSION")
+
+  defp git_revision_hash(_env) do
     {rev, 0} = System.cmd("git", ["rev-parse", "HEAD"])
     String.replace(rev, "\n", "")
   end
