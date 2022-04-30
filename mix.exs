@@ -1,9 +1,18 @@
 defmodule Linker.MixProject do
   use Mix.Project
 
+  @app :linker
+  @name "JOIN Linker"
+  @version "0.1.0-#{Mix.env()}"
+  @description "A Job Shop aimed at students in the field of computing"
+
   def project do
     [
-      app: :linker,
+      app: @app,
+      name: @name,
+      version: @version,
+      description: @description,
+      git_ref: git_revision_hash(),
       version: "0.1.0",
       elixir: "~> 1.13",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -69,5 +78,10 @@ defmodule Linker.MixProject do
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"]
     ]
+  end
+
+  defp git_revision_hash do
+    {rev, 0} = System.cmd("git", ["rev-parse", "HEAD"])
+    String.replace(rev, "\n", "")
   end
 end
