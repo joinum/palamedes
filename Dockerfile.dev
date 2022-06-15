@@ -1,10 +1,10 @@
-FROM elixir:1.13-alpine
+FROM elixir:otp-25-alpine
 
 # Install build dependencies
 RUN apk add --no-cache build-base git python3
 
 # Install frontend dependencies
-RUN apk add --no-cache nodejs npm
+RUN apk add --update nodejs npm
 RUN npm install -g npx
 
 # Install pdf generation dependencies
