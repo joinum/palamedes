@@ -15,19 +15,14 @@ defmodule Linker.Repo.Seeds.Accounts do
         [
           %{
             email: "cesium@di.uminho.pt",
-            password: "GZqi588cWAK4Ti123SAQWE1312RRQW112!?",
+            password: "Password1234!",
             admin: true
           },
           %{
-            email: "join.uminho.di@gmail.com",
-            password: "FAQWE596123RGPK4in12213!!asdADDA1209!",
+            email: "necc@di.uminho.pt",
+            password: "Password1234!",
             admin: true
-          },
-          %{
-            email: "felicio@gmail.com",
-            password: "Password1234567890",
-            admin: false
-          },
+          }
         ]
         |> Enum.each(&insert_user/1)
 

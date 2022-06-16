@@ -28,7 +28,7 @@ defmodule Linker.Repo.Seeds.Link do
           },
           %{
             index: 3,
-            title: "Dinheiro Gratis",
+            title: "Dinheiro Grátis",
             emoji: "🤑",
             clicks: 0,
             slug: "$$$$$",
@@ -37,7 +37,7 @@ defmodule Linker.Repo.Seeds.Link do
           },
           %{
             index: 4,
-            title: "Fado Portugues",
+            title: "Fado Português",
             emoji: "🎤",
             clicks: 0,
             slug: "amalia",
@@ -46,6 +46,7 @@ defmodule Linker.Repo.Seeds.Link do
           }
         ]
         |> Enum.each(&Repo.insert!(Link.changeset(%Link{}, &1)))
+
       _ ->
         Mix.shell().error("Found links, aborting seeding links.")
     end
