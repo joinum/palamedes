@@ -18,7 +18,9 @@ defmodule Linker.Shortener do
 
   """
   def list_links do
-    Repo.all(Link)
+    Link
+    |> order_by(asc: :index)
+    |> Repo.all()
   end
 
   @doc """
